@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace BinauralBeats
 {
-    public partial class MoodsForm : Form
+    public partial class Register : Form
     {
-        public MoodsForm()
+        public Register()
         {
             InitializeComponent();
-        }
-
-        private void MoodsForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.lblTopText = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txbUsername = new System.Windows.Forms.TextBox();
+            this.txbPassword = new System.Windows.Forms.TextBox();
             this.lblUsername = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnLogIn = new System.Windows.Forms.Button();
@@ -43,23 +43,23 @@
             this.lblTopText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTopText.Location = new System.Drawing.Point(171, 19);
             this.lblTopText.Name = "lblTopText";
-            this.lblTopText.Size = new System.Drawing.Size(112, 39);
+            this.lblTopText.Size = new System.Drawing.Size(108, 38);
             this.lblTopText.TabIndex = 0;
             this.lblTopText.Text = "LogIn";
             // 
-            // textBox1
+            // txbUsername
             // 
-            this.textBox1.Location = new System.Drawing.Point(178, 93);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 1;
+            this.txbUsername.Location = new System.Drawing.Point(178, 93);
+            this.txbUsername.Name = "txbUsername";
+            this.txbUsername.Size = new System.Drawing.Size(100, 22);
+            this.txbUsername.TabIndex = 1;
             // 
-            // textBox2
+            // txbPassword
             // 
-            this.textBox2.Location = new System.Drawing.Point(178, 147);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 2;
+            this.txbPassword.Location = new System.Drawing.Point(178, 147);
+            this.txbPassword.Name = "txbPassword";
+            this.txbPassword.Size = new System.Drawing.Size(100, 22);
+            this.txbPassword.TabIndex = 2;
             // 
             // lblUsername
             // 
@@ -110,8 +110,8 @@
             this.Controls.Add(this.btnLogIn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblUsername);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txbPassword);
+            this.Controls.Add(this.txbUsername);
             this.Controls.Add(this.lblTopText);
             this.Name = "LogIn";
             this.Text = "Form1";
@@ -124,8 +124,8 @@
         #endregion
 
         private System.Windows.Forms.Label lblTopText;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txbUsername;
+        private System.Windows.Forms.TextBox txbPassword;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLogIn;

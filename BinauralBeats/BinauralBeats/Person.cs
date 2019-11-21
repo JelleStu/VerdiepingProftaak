@@ -8,19 +8,22 @@ namespace BinauralBeats
 {
     class Person
     {
-        private string userName;
-        private string password;
+        private static string username;
+        private static string password;
 
         public Person(string UserName, string PassWord)
         {
-            this.userName = UserName;
-            this.password = PassWord;
+            password = PassWord;
+            username = UserName;
         }
 
-        public (string userName, string password) getAccountDetails()
+        public static void TestFunction()
         {
-            return (userName, password);
-            
+            Console.Write("test");
+        }
+        public static bool GetPassword(string usernameFilled, string passwordFilled)
+        {
+            return usernameFilled == username && passwordFilled == password;
         }
     }
 }

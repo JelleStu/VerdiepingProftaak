@@ -1,6 +1,6 @@
 ﻿namespace BinauralBeats
 {
-    partial class MoodsForm
+    partial class Register
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // MoodsForm
+            // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "MoodsForm";
-            this.Text = "MoodsForm";
-            this.Load += new System.EventHandler(this.MoodsForm_Load);
+            this.ClientSize = new System.Drawing.Size(488, 341);
+            this.Name = "Register";
+            this.Text = "Register";
             this.ResumeLayout(false);
 
         }
