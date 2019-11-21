@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< HEAD
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.rbMood1 = new System.Windows.Forms.RadioButton();
             this.rbMood2 = new System.Windows.Forms.RadioButton();
@@ -117,6 +118,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+=======
+            this.SuspendLayout();
+            // 
+            // MoodsForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Name = "MoodsForm";
+            this.Text = "MoodsForm";
+            this.Load += new System.EventHandler(this.MoodsForm_Load);
+            this.ResumeLayout(false);
+>>>>>>> develop
 
         }
 

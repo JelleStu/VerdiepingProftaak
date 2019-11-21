@@ -18,6 +18,7 @@ namespace BinauralBeats
         {
             InitializeComponent();
         }
+<<<<<<< HEAD
         int i = 0;
         
 
@@ -59,6 +60,12 @@ namespace BinauralBeats
                 string informatie = Bèta.returninfo();
                 label1.Text = informatie;
             }
+=======
+
+        private void MoodsForm_Load(object sender, EventArgs e)
+        {
+
+>>>>>>> develop
         }
     }
 }
