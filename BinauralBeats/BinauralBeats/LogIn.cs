@@ -24,7 +24,8 @@ namespace BinauralBeats
 
         private void BtnLogIn_Click(object sender, EventArgs e)
         {
-            
+            MoodsForm moodform = new MoodsForm();
+            moodform.Show();
         }
     }
 }
