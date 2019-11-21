@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+/// <summary>
+/// Manoah class
+/// </summary>
 namespace BinauralBeats
 {
     public partial class MoodsForm : Form
