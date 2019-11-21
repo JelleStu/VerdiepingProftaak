@@ -16,6 +16,7 @@ namespace BinauralBeats
         public LogIn()
         {
             InitializeComponent();
+            Person.AddPerson("Jelle", "123");
         }
 
         private void LogIn_Load(object sender, EventArgs e)
@@ -24,13 +25,17 @@ namespace BinauralBeats
         }
 
         private void BtnLogIn_Click(object sender, EventArgs e)
-        {
-            Person Manoah = new Person("Manouh", "Geheim123!");
-            Person Jelle = new Person("Jelle", "123");
+        {   
             bool AccountOk = Person.GetPassword(txbUsername.Text, txbPassword.Text);
             if (AccountOk != true) return;
             MoodsForm moodfrom = new MoodsForm();
             moodfrom.Show();
+        }
+
+        private void BtnRegister_Click(object sender, EventArgs e)
+        {
+            Register registerForm = new Register();
+            registerForm.Show();
         }
     }
 }
