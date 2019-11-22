@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace BinauralBeats
 {
-    class Person
+
+    public class Person
     {
+        public static List<Person> Persons;
         private static string username;
         private static string password;
 
@@ -17,10 +19,19 @@ namespace BinauralBeats
             username = UserName;
         }
 
-        public static void TestFunction()
+        public static void AddPerson(string usernameRegister, string passwordRegister)
         {
-            Console.Write("test");
+            if (Persons == null)
+            {
+                Persons = new List<Person>();
+                Person.AddPerson("Jelle", "123");
+            }
+            else
+            {
+                Persons.Add(new Person(usernameRegister, passwordRegister));
+            }
         }
+
         public static bool GetPassword(string usernameFilled, string passwordFilled)
         {
             return usernameFilled == username && passwordFilled == password;
