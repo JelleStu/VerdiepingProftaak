@@ -13,10 +13,12 @@ namespace BinauralBeats
 {
     public partial class LogIn : Form
     {
+        private Persons personenlist;
         public LogIn()
         {
             InitializeComponent();
-            Person.AddPerson("Jelle", "123");
+            personenlist = new Persons();
+            
         }
 
         private void LogIn_Load(object sender, EventArgs e)
@@ -25,9 +27,9 @@ namespace BinauralBeats
         }
 
         private void BtnLogIn_Click(object sender, EventArgs e)
-        {   
-            bool AccountOk = Person.GetPassword(txbUsername.Text, txbPassword.Text);
-            if (AccountOk != true) return;
+        {
+            bool PasswordOk = personenlist.FindForPerson(txbUsername.Text, txbPassword.Text);
+            if (PasswordOk != true) return;
             MoodsForm moodfrom = new MoodsForm();
             moodfrom.Show();
         }

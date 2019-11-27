@@ -20,7 +20,7 @@ namespace BinauralBeats
 
         private void BtnCreate_Click(object sender, EventArgs e)
         {
-            Person.AddPerson(txbUsername.Text, txbPassword.Text);
+          //  Person.AddPerson(txbUsername.Text, txbPassword.Text);
             MessageBox.Show("User is created!");
         }
     }
