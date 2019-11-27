@@ -9,9 +9,8 @@ namespace BinauralBeats
 
     public class Person
     {
-        public static List<Person> Persons;
-        private static string username;
-        private static string password;
+        private string username;
+        private string password;
 
         public Person(string UserName, string PassWord)
         {
@@ -19,20 +18,12 @@ namespace BinauralBeats
             username = UserName;
         }
 
-        public static void AddPerson(string usernameRegister, string passwordRegister)
+        public string GetName()
         {
-            if (Persons == null)
-            {
-                Persons = new List<Person>();
-                Person.AddPerson("Jelle", "123");
-            }
-            else
-            {
-                Persons.Add(new Person(usernameRegister, passwordRegister));
-            }
+            return username;
         }
 
-        public static bool GetPassword(string usernameFilled, string passwordFilled)
+        public bool GetPassword(string usernameFilled, string passwordFilled)
         {
             return usernameFilled == username && passwordFilled == password;
         }
