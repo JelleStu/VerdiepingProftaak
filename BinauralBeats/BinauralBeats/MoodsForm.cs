@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 /// <summary>
 /// Manoah class
 /// </summary>
@@ -14,21 +15,38 @@ namespace BinauralBeats
 {
     public partial class MoodsForm : Form
     {
+        string[] Music = new string[5];
         public MoodsForm()
         {
             InitializeComponent();
+            //Muziek toevoegen
+            Music[0] = " ";
+            Music[1] = "C:/Users/Manoah Somers/Documents/Fontys/2019-2020/Proftaak/Verdieping proftaak/VerdiepingProftaak/BinauralBeats/BinauralBeats/Resources/Binaural Beat - Delta Wave Frequency 90minute 100 Pure.mp3";
+            Music[2] = "C:/Users/Manoah Somers/Documents/Fontys/2019-2020/Proftaak/Verdieping proftaak/VerdiepingProftaak/BinauralBeats/BinauralBeats/Resources/Binaural Beat - Theta Wave 100 Pure Theta Frequency.mp3";
+            Music[3] = "C:/Users/Manoah Somers/Documents/Fontys/2019-2020/Proftaak/Verdieping proftaak/VerdiepingProftaak/BinauralBeats/BinauralBeats/Resources/Binaural Beat - Alpha Wave Frequency 90minute 100 Pure.mp3";
+            Music[4] = "C:/Users/Manoah Somers/Documents/Fontys/2019-2020/Proftaak/Verdieping proftaak/VerdiepingProftaak/BinauralBeats/BinauralBeats/Resources/Binaural Beat - Beta Wave Frequency 100 Pure Beta.mp3";
         }
-<<<<<<< HEAD
-        int i = 0;
-        
+        int chosenmood = 0;
+        decimal tijd;
+        string tijduur;
+        string tijdminuut;
+        string tijdseconde;
+
+        //Alle objecten aanmaken
+        Moods Delta = new Moods(1, "Helend", "0-4 Hertz", "Helend licht");
+        Moods Thèta = new Moods(2, "Meditatie, diepe ontspanning, creativiteit, trance", "4-8 Hertz", "Ontspannend licht");
+        Moods Alfa = new Moods(3, "Stress verlagend, beter leren", "8-14 Hertz", "Stress verlagend licht");
+        Moods Bèta = new Moods(4, "Focus, energie, helder", "14-30 Hertz", "Helder licht licht");
 
         private void rbMood1_CheckedChanged(object sender, EventArgs e)
         {
             if (rbMood1.Checked)
             {
-                Moods DiepeSlaap = new Moods(1, "Helend", "0-4 Hertz", "Helend licht");
-                string informatie = DiepeSlaap.returninfo();
-                label1.Text = informatie;
+
+                string informatie = Delta.returninfo();
+                chosenmood = Delta.returnChosenMood();
+                rtbMoodInformation.Text = informatie;
+                PauseMusic();
             }
         }
 
@@ -36,9 +54,10 @@ namespace BinauralBeats
         {
             if (rbMood2.Checked)
             {
-                Moods Thèta = new Moods(2, "Meditatie, diepe ontspanning, creativiteit, trance", "4-8 Hertz", "Ontspannend licht");
                 string informatie = Thèta.returninfo();
-                label1.Text = informatie;
+                chosenmood = Thèta.returnChosenMood();
+                rtbMoodInformation.Text = informatie;
+                PauseMusic();
             }
         }
 
@@ -46,9 +65,10 @@ namespace BinauralBeats
         {
             if (rbMood3.Checked)
             {
-                Moods Alfa = new Moods(3, "tress verlagend, beter leren", "8-14 Hertz", "Stress verlagend licht");
                 string informatie = Alfa.returninfo();
-                label1.Text = informatie;
+                chosenmood = Alfa.returnChosenMood();
+                rtbMoodInformation.Text = informatie;
+                PauseMusic();
             }
         }
 
@@ -56,16 +76,91 @@ namespace BinauralBeats
         {
             if (rbMood4.Checked)
             {
-                Moods Bèta = new Moods(4, "Focus, energie, helder", "14-30 Hertz", "Helder licht licht");
                 string informatie = Bèta.returninfo();
-                label1.Text = informatie;
+                chosenmood = Bèta.returnChosenMood();
+                rtbMoodInformation.Text = informatie;
+                PauseMusic();
             }
-=======
+        }
 
-        private void MoodsForm_Load(object sender, EventArgs e)
+        private void playSoundFromResource(object sender, EventArgs e)
+        {
+            if (chosenmood != 0)
+            {
+                wplayer.URL = Music[chosenmood];
+                wplayer.controls.play();
+            }
+        }
+
+        private void btnPlayMusic_Click(object sender, EventArgs e)
+        {
+            MusicTimer();
+            playSoundFromResource(sender, e);
+        }
+
+        private void btnMusicPause_Click(object sender, EventArgs e)
+        {
+            PauseMusic();
+        }
+        public void PauseMusic()
+        {
+            timer1.Stop();
+            wplayer.controls.pause();
+        }
+        public void MusicTimer()
+        {
+            timer1.Start();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            tijduur = dtpTimer.Value.ToString("HH");
+            tijdminuut = dtpTimer.Value.ToString("mm");
+            tijdseconde = dtpTimer.Value.ToString("ss");
+            int itijdseconde = Convert.ToInt32(tijdseconde);
+            int itijdminuut = Convert.ToInt32(tijdminuut);
+            int itijduur = Convert.ToInt32(tijduur);
+            if (itijdseconde == 0)
+            {
+                if (itijdminuut == 0)
+                {
+                    if (itijduur == 0)
+                    {
+                        PauseMusic();
+                        timer1.Stop();
+                    }
+                    else
+                    {
+                        tijduur = Convert.ToString(itijduur -= 1);
+                        tijdminuut = Convert.ToString(itijdminuut = 59);
+                        tijdseconde = Convert.ToString(itijdseconde = 59);
+                    }
+                }
+                else
+                {
+                    tijdminuut = Convert.ToString(itijdminuut -= 1);
+                    tijdseconde = Convert.ToString(itijdseconde = 59);
+                }
+            }
+            else
+            {
+                tijdseconde = Convert.ToString(itijdseconde -= 1);
+            }
+            int iitijdseconde = Convert.ToInt32(tijdseconde);
+            int iitijdminuut = Convert.ToInt32(tijdminuut);
+            int iitijduur = Convert.ToInt32(tijduur);
+
+            //dtpTimer.Value.ToString(iitijduur,iitijdminuut,iitijdseconde);
+        }
+
+        private void nudMusicTimer_ValueChanged(object sender, EventArgs e)
+        {
+            //  tijd = Convert.ToDecimal(nudMusicTimer.Value)*60;
+        }
+
+        private void dtpTimer_ValueChanged(object sender, EventArgs e)
         {
 
->>>>>>> develop
         }
     }
 }
