@@ -93,9 +93,9 @@
             // 
             // rtbMoodInformation
             // 
-            this.rtbMoodInformation.Location = new System.Drawing.Point(690, 533);
+            this.rtbMoodInformation.Location = new System.Drawing.Point(472, 385);
             this.rtbMoodInformation.Name = "rtbMoodInformation";
-            this.rtbMoodInformation.Size = new System.Drawing.Size(100, 96);
+            this.rtbMoodInformation.Size = new System.Drawing.Size(605, 490);
             this.rtbMoodInformation.TabIndex = 6;
             this.rtbMoodInformation.Text = "";
             // 
@@ -103,31 +103,42 @@
             // 
             this.btnPlayMusic.Location = new System.Drawing.Point(463, 74);
             this.btnPlayMusic.Name = "btnPlayMusic";
-            this.btnPlayMusic.Size = new System.Drawing.Size(161, 131);
+            this.btnPlayMusic.Size = new System.Drawing.Size(244, 127);
             this.btnPlayMusic.TabIndex = 7;
-            this.btnPlayMusic.Text = "button1";
+            this.btnPlayMusic.Text = "Begin";
             this.btnPlayMusic.UseVisualStyleBackColor = true;
+            this.btnPlayMusic.Click += new System.EventHandler(this.btnPlayMusic_Click_1);
             // 
             // btnMusicPause
             // 
-            this.btnMusicPause.Location = new System.Drawing.Point(823, 156);
+            this.btnMusicPause.Location = new System.Drawing.Point(797, 74);
             this.btnMusicPause.Name = "btnMusicPause";
-            this.btnMusicPause.Size = new System.Drawing.Size(178, 106);
+            this.btnMusicPause.Size = new System.Drawing.Size(215, 127);
             this.btnMusicPause.TabIndex = 8;
-            this.btnMusicPause.Text = "button1";
+            this.btnMusicPause.Text = "Pauzeren";
             this.btnMusicPause.UseVisualStyleBackColor = true;
+            this.btnMusicPause.Click += new System.EventHandler(this.btnMusicPause_Click);
             // 
             // dtpTimer
             // 
-            this.dtpTimer.Location = new System.Drawing.Point(831, 164);
+            this.dtpTimer.CustomFormat = "HH:mm:ss";
+            this.dtpTimer.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTimer.Location = new System.Drawing.Point(708, 341);
             this.dtpTimer.Name = "dtpTimer";
+            this.dtpTimer.ShowUpDown = true;
             this.dtpTimer.Size = new System.Drawing.Size(200, 38);
             this.dtpTimer.TabIndex = 9;
+            this.dtpTimer.Value = new System.DateTime(2019, 11, 28, 0, 0, 0, 0);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // axWindowsMediaPlayer2
             // 
             this.axWindowsMediaPlayer2.Enabled = true;
-            this.axWindowsMediaPlayer2.Location = new System.Drawing.Point(717, 103);
+            this.axWindowsMediaPlayer2.Location = new System.Drawing.Point(100, 581);
             this.axWindowsMediaPlayer2.Name = "axWindowsMediaPlayer2";
             this.axWindowsMediaPlayer2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer2.OcxState")));
             this.axWindowsMediaPlayer2.Size = new System.Drawing.Size(97, 102);

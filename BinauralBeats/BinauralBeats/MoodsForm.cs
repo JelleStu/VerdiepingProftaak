@@ -38,6 +38,7 @@ namespace BinauralBeats
         Moods Alfa = new Moods(3, "Stress verlagend, beter leren", "8-14 Hertz", "Stress verlagend licht");
         Moods Bèta = new Moods(4, "Focus, energie, helder", "14-30 Hertz", "Helder licht licht");
 
+
         private void rbMood1_CheckedChanged(object sender, EventArgs e)
         {
             if (rbMood1.Checked)
@@ -87,12 +88,12 @@ namespace BinauralBeats
         {
             if (chosenmood != 0)
             {
-                wplayer.URL = Music[chosenmood];
-                wplayer.controls.play();
+                //wplayer.URL = Music[chosenmood];
+                //wplayer.controls.play();
             }
         }
 
-        private void btnPlayMusic_Click(object sender, EventArgs e)
+        private void btnPlayMusic_Click_1(object sender, EventArgs e)
         {
             MusicTimer();
             playSoundFromResource(sender, e);
@@ -105,7 +106,7 @@ namespace BinauralBeats
         public void PauseMusic()
         {
             timer1.Stop();
-            wplayer.controls.pause();
+            //wplayer.controls.pause();
         }
         public void MusicTimer()
         {
@@ -150,16 +151,7 @@ namespace BinauralBeats
             int iitijdminuut = Convert.ToInt32(tijdminuut);
             int iitijduur = Convert.ToInt32(tijduur);
 
-            //dtpTimer.Value.ToString(iitijduur,iitijdminuut,iitijdseconde);
-        }
-
-        private void nudMusicTimer_ValueChanged(object sender, EventArgs e)
-        {
-            //  tijd = Convert.ToDecimal(nudMusicTimer.Value)*60;
-        }
-
-        private void dtpTimer_ValueChanged(object sender, EventArgs e)
-        {
+            dtpTimer.Value= new DateTime(2019,11,28, iitijduur, iitijdminuut, iitijdseconde );
 
         }
     }
