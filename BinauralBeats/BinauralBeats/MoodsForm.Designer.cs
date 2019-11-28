@@ -28,22 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-<<<<<<< HEAD
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MoodsForm));
             this.rbMood1 = new System.Windows.Forms.RadioButton();
             this.rbMood2 = new System.Windows.Forms.RadioButton();
             this.rbMood3 = new System.Windows.Forms.RadioButton();
             this.rbMood4 = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            this.rtbMoodInformation = new System.Windows.Forms.RichTextBox();
+            this.btnPlayMusic = new System.Windows.Forms.Button();
+            this.btnMusicPause = new System.Windows.Forms.Button();
+            this.dtpTimer = new System.Windows.Forms.DateTimePicker();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.axWindowsMediaPlayer2 = new AxWMPLib.AxWindowsMediaPlayer();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // trackBar1
-            // 
-            this.trackBar1.Location = new System.Drawing.Point(39, 515);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(371, 114);
-            this.trackBar1.TabIndex = 0;
             // 
             // rbMood1
             // 
@@ -93,54 +91,80 @@
             this.rbMood4.UseVisualStyleBackColor = true;
             this.rbMood4.CheckedChanged += new System.EventHandler(this.rbMood4_CheckedChanged);
             // 
-            // label1
+            // rtbMoodInformation
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(531, 208);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 32);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "label1";
+            this.rtbMoodInformation.Location = new System.Drawing.Point(690, 533);
+            this.rtbMoodInformation.Name = "rtbMoodInformation";
+            this.rtbMoodInformation.Size = new System.Drawing.Size(100, 96);
+            this.rtbMoodInformation.TabIndex = 6;
+            this.rtbMoodInformation.Text = "";
+            // 
+            // btnPlayMusic
+            // 
+            this.btnPlayMusic.Location = new System.Drawing.Point(463, 74);
+            this.btnPlayMusic.Name = "btnPlayMusic";
+            this.btnPlayMusic.Size = new System.Drawing.Size(161, 131);
+            this.btnPlayMusic.TabIndex = 7;
+            this.btnPlayMusic.Text = "button1";
+            this.btnPlayMusic.UseVisualStyleBackColor = true;
+            // 
+            // btnMusicPause
+            // 
+            this.btnMusicPause.Location = new System.Drawing.Point(823, 156);
+            this.btnMusicPause.Name = "btnMusicPause";
+            this.btnMusicPause.Size = new System.Drawing.Size(178, 106);
+            this.btnMusicPause.TabIndex = 8;
+            this.btnMusicPause.Text = "button1";
+            this.btnMusicPause.UseVisualStyleBackColor = true;
+            // 
+            // dtpTimer
+            // 
+            this.dtpTimer.Location = new System.Drawing.Point(831, 164);
+            this.dtpTimer.Name = "dtpTimer";
+            this.dtpTimer.Size = new System.Drawing.Size(200, 38);
+            this.dtpTimer.TabIndex = 9;
+            // 
+            // axWindowsMediaPlayer2
+            // 
+            this.axWindowsMediaPlayer2.Enabled = true;
+            this.axWindowsMediaPlayer2.Location = new System.Drawing.Point(717, 103);
+            this.axWindowsMediaPlayer2.Name = "axWindowsMediaPlayer2";
+            this.axWindowsMediaPlayer2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer2.OcxState")));
+            this.axWindowsMediaPlayer2.Size = new System.Drawing.Size(97, 102);
+            this.axWindowsMediaPlayer2.TabIndex = 12;
             // 
             // MoodsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1106, 887);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.axWindowsMediaPlayer2);
+            this.Controls.Add(this.dtpTimer);
+            this.Controls.Add(this.btnMusicPause);
+            this.Controls.Add(this.btnPlayMusic);
+            this.Controls.Add(this.rtbMoodInformation);
             this.Controls.Add(this.rbMood4);
             this.Controls.Add(this.rbMood3);
             this.Controls.Add(this.rbMood2);
             this.Controls.Add(this.rbMood1);
-            this.Controls.Add(this.trackBar1);
             this.Name = "MoodsForm";
             this.Text = "MoodsForm";
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-=======
-            this.SuspendLayout();
-            // 
-            // MoodsForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "MoodsForm";
-            this.Text = "MoodsForm";
-            this.Load += new System.EventHandler(this.MoodsForm_Load);
-            this.ResumeLayout(false);
->>>>>>> develop
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.RadioButton rbMood1;
         private System.Windows.Forms.RadioButton rbMood2;
         private System.Windows.Forms.RadioButton rbMood3;
         private System.Windows.Forms.RadioButton rbMood4;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RichTextBox rtbMoodInformation;
+        private System.Windows.Forms.Button btnPlayMusic;
+        private System.Windows.Forms.Button btnMusicPause;
+        private System.Windows.Forms.DateTimePicker dtpTimer;
+        private System.Windows.Forms.Timer timer1;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer2;
     }
 }

@@ -7,23 +7,30 @@ namespace BinauralBeats
 {
     class Moods
     {
-        private static string mood = string.Empty;
-        private static int chosenMood;
-        public static string music { get; set; }
-        public static string light { get; set; }
+        private string mood = string.Empty;
+        private int chosenMood;
+        private string music { get; set; }
+        private string light { get; set; }
+        private string moodinformatie = string.Empty;
+
+
 
         public Moods(int selectedMood, string _mood, string _music, string _light)
         {
-            mood = _mood;
-            chosenMood = selectedMood;
-            music = _music;
-            light = _light;
+            this.mood = _mood;
+            this.chosenMood = selectedMood;
+            this.music = _music;
+            this.light = _light;
         }
-        private string moodinformatie = "De gevoels informatie is: " + mood + music + light;
 
         public string returninfo()
         {
+            moodinformatie = ("De gevoels informatie is: " + mood + ", " + music + ", " + light);
             return moodinformatie;
+        }
+        public int returnChosenMood()
+        {
+            return chosenMood;
         }
     }
 }
