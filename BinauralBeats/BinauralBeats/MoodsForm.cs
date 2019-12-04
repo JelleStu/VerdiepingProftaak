@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
 using BinauralBeats.Properties;
+using Microsoft.VisualBasic;
 
 /// <summary>
 /// Manoah class
@@ -46,7 +47,6 @@ namespace BinauralBeats
         Moods Alfa = new Moods(3, "Stress verlagend, beter leren", "8-14 Hertz", "Stress verlagend licht");
         Moods Bèta = new Moods(4, "Focus, energie, helder", "14-30 Hertz", "Helder licht licht");
 
-        System.Media.SoundPlayer player = new System.Media.SoundPlayer();
 
 
         private void rbMood1_CheckedChanged(object sender, EventArgs e)
@@ -107,12 +107,12 @@ namespace BinauralBeats
             MusicTimer();
             timer2.Start();
             playSoundFromResource(sender, e);
+
         }
 
         private void btnMusicPause_Click(object sender, EventArgs e)
         {
             PauseMusic();
-            chart1.Dispose();
         }
         public void PauseMusic()
         {
@@ -130,39 +130,10 @@ namespace BinauralBeats
             tijduur = dtpTimer.Value.ToString("HH");
             tijdminuut = dtpTimer.Value.ToString("mm");
             tijdseconde = dtpTimer.Value.ToString("ss");
-            int itijdseconde = Convert.ToInt32(tijdseconde);
-            int itijdminuut = Convert.ToInt32(tijdminuut);
-            int itijduur = Convert.ToInt32(tijduur);
-            if (itijdseconde == 0)
-            {
-                if (itijdminuut == 0)
-                {
-                    if (itijduur == 0)
-                    {
-                        PauseMusic();
-                        timer1.Stop();
-                    }
-                    else
-                    {
-                        itijduur -= 1;
-                        itijdminuut = 59;
-                        itijdseconde = 59;
-                    }
-                }
-                else
-                {
-                    itijdminuut -= 1;
-                    itijdseconde = 59;
-                }
-            }
-            else
-            {
-                itijdseconde -= 1;
-            }
 
-            dtpTimer.Value= new DateTime(2019,11,28, itijduur, itijdminuut, itijdseconde );
+            MusicTimer musictimer = new MusicTimer(tijduur, tijdminuut, tijdseconde);
 
-
+            dtpTimer.Value= new DateTime(2019,11,28, musictimer.tijduur, musictimer.tijdminuut, musictimer.tijdseconde);
 
         }
 
@@ -178,12 +149,13 @@ namespace BinauralBeats
 
             c1 += 0.1;
 
-            chart2.Series[0].Points.AddXY(c2, 3 * Math.Sin(4 * c2));// + 5 * Math.Cos(3 * x));
+            chart2.Series[0].Points.AddXY(c2, 3 * Math.Sin(2 * c2));
 
             if (chart2.Series[0].Points.Count > 100)
-                chart2.Series[0].Points.RemoveAt(0);
 
-            chart2.ChartAreas[0].AxisX.Minimum = chart1.Series[0].Points[0].XValue;
+            { chart2.Series[0].Points.RemoveAt(0);}
+
+            chart2.ChartAreas[0].AxisX.Minimum = chart2.Series[0].Points[0].XValue;
             chart2.ChartAreas[0].AxisX.Maximum = c2;
 
             c2 += 0.1;
