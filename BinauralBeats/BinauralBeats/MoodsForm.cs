@@ -3,6 +3,7 @@ using System.Media;
 using System.Windows.Forms;
 using AudioSpectrumAdvance;
 using BinauralBeats.Properties;
+using Microsoft.VisualBasic;
 
 /// <summary>
 /// Manoah class
@@ -40,11 +41,16 @@ namespace BinauralBeats
             Music[3] = new SoundPlayer(Resources.AlphaWave);
             Music[4] = new SoundPlayer(Resources.BetaWave);
 
+//Alle objecten aanmaken
+        Moods Delta = new Moods(1, "Helend", "0-4 Hertz", "Helend licht");
+        Moods Thèta = new Moods(2, "Meditatie, diepe ontspanning, creativiteit, trance", "4-8 Hertz", "Ontspannend licht");
+        Moods Alfa = new Moods(3, "Stress verlagend, beter leren", "8-14 Hertz", "Stress verlagend licht");
+        Moods Bèta = new Moods(4, "Focus, energie, helder", "14-30 Hertz", "Helder licht licht");
+
             var analyzer = new Analyzer(progressBar1, progressBar2, spectrum1, comboBox1, chart1);
             analyzer.Enable = true;
             analyzer.DisplayEnable = true;
         }
-
 
         private void rbMood1_CheckedChanged(object sender, EventArgs e)
         {
@@ -100,6 +106,7 @@ namespace BinauralBeats
             MusicTimer();
             timer2.Start();
             playSoundFromResource(sender, e);
+
         }
 
         private void btnMusicPause_Click(object sender, EventArgs e)
@@ -124,10 +131,10 @@ namespace BinauralBeats
             tijduur = dtpTimer.Value.ToString("HH");
             tijdminuut = dtpTimer.Value.ToString("mm");
             tijdseconde = dtpTimer.Value.ToString("ss");
-
             MusicTimer musictimer = new MusicTimer(tijduur, tijdminuut, tijdseconde);
 
-            dtpTimer.Value = new DateTime(2019, 11, 28, musictimer.tijduur, musictimer.tijdminuut, musictimer.tijdseconde);
+            dtpTimer.Value= new DateTime(2019,11,28, musictimer.tijduur, musictimer.tijdminuut, musictimer.tijdseconde);
+
         }
     }
 }
