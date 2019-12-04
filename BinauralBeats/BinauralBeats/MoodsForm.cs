@@ -124,37 +124,10 @@ namespace BinauralBeats
             tijduur = dtpTimer.Value.ToString("HH");
             tijdminuut = dtpTimer.Value.ToString("mm");
             tijdseconde = dtpTimer.Value.ToString("ss");
-            var itijdseconde = Convert.ToInt32(tijdseconde);
-            var itijdminuut = Convert.ToInt32(tijdminuut);
-            var itijduur = Convert.ToInt32(tijduur);
-            if (itijdseconde == 0)
-            {
-                if (itijdminuut == 0)
-                {
-                    if (itijduur == 0)
-                    {
-                        PauseMusic();
-                        timer1.Stop();
-                    }
-                    else
-                    {
-                        itijduur -= 1;
-                        itijdminuut = 59;
-                        itijdseconde = 59;
-                    }
-                }
-                else
-                {
-                    itijdminuut -= 1;
-                    itijdseconde = 59;
-                }
-            }
-            else
-            {
-                itijdseconde -= 1;
-            }
 
-            dtpTimer.Value = new DateTime(2019, 11, 28, itijduur, itijdminuut, itijdseconde);
+            MusicTimer musictimer = new MusicTimer(tijduur, tijdminuut, tijdseconde);
+
+            dtpTimer.Value = new DateTime(2019, 11, 28, musictimer.tijduur, musictimer.tijdminuut, musictimer.tijdseconde);
         }
     }
 }
