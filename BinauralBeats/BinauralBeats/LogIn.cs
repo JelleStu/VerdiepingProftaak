@@ -32,6 +32,8 @@ namespace BinauralBeats
             if (PasswordOk != true) return;
             MoodsForm moodfrom = new MoodsForm();
             moodfrom.Show();
+            this.Hide();
+            
         }
 
         private void BtnRegister_Click(object sender, EventArgs e)
