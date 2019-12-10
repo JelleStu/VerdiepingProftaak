@@ -23,7 +23,7 @@ namespace Verdiepende_proftaak
             feedback = _feedback;
             CheckFeedback();
         }
-        public void CheckFeedback()
+        private void CheckFeedback()
         {
             if (score == 0)
             {
