@@ -41,9 +41,9 @@ namespace BinauralBeats
             InitializeComponent();
             //Muziek toevoegen
             Music[0] = new SoundPlayer();
-            Music[1] = new SoundPlayer(Resources.AlphaWave);
-            Music[2] = new SoundPlayer(Resources.DeltaWave);
-            Music[3] = new SoundPlayer(Resources.ThetaWave);
+            Music[1] = new SoundPlayer(Resources.DeltaWave);
+            Music[2] = new SoundPlayer(Resources.ThetaWave);
+            Music[3] = new SoundPlayer(Resources.AlphaWave);
             Music[4] = new SoundPlayer(Resources.BetaWave);
 
             //Alle objecten aanmaken
