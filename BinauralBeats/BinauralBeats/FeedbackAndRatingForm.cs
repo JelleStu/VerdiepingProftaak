@@ -12,72 +12,61 @@ namespace Verdiepende_proftaak
 {
     public partial class FeedbackAndRatingForm : Form
     {
+        StarsForRating star = new StarsForRating();
         public FeedbackAndRatingForm()
         {
             InitializeComponent();
-            pbStar1.Image = Properties.Resources.StarEmpty;
-            pbStar2.Image = Properties.Resources.StarEmpty;
-            pbStar3.Image = Properties.Resources.StarEmpty;
-            pbStar4.Image = Properties.Resources.StarEmpty;
-            pbStar5.Image = Properties.Resources.StarEmpty;
         }
+
         int score;
         string feedback;
 
         private void pbStar1_Click(object sender, EventArgs e)
         {
-            pbStar1.Image = Properties.Resources.StarFull;
-            pbStar2.Image = Properties.Resources.StarEmpty;
-            pbStar3.Image = Properties.Resources.StarEmpty;
-            pbStar4.Image = Properties.Resources.StarEmpty;
-            pbStar5.Image = Properties.Resources.StarEmpty;
             score = 1;
+            star.CalculateStars(score);
+            StarsImages();
         }
 
         private void pbStar2_Click(object sender, EventArgs e)
         {
-            pbStar1.Image = Properties.Resources.StarFull;
-            pbStar2.Image = Properties.Resources.StarFull;
-            pbStar3.Image = Properties.Resources.StarEmpty;
-            pbStar4.Image = Properties.Resources.StarEmpty;
-            pbStar5.Image = Properties.Resources.StarEmpty;
             score = 2;
+            star.CalculateStars(score);
+            StarsImages();
         }
 
         private void pbStar3_Click(object sender, EventArgs e)
         {
-            pbStar1.Image = Properties.Resources.StarFull;
-            pbStar2.Image = Properties.Resources.StarFull;
-            pbStar3.Image = Properties.Resources.StarFull;
-            pbStar4.Image = Properties.Resources.StarEmpty;
-            pbStar5.Image = Properties.Resources.StarEmpty;
             score = 3;
+            star.CalculateStars(score);
+            StarsImages();
         }
 
         private void pbStar4_Click(object sender, EventArgs e)
         {
-            pbStar1.Image = Properties.Resources.StarFull;
-            pbStar2.Image = Properties.Resources.StarFull;
-            pbStar3.Image = Properties.Resources.StarFull;
-            pbStar4.Image = Properties.Resources.StarFull;
-            pbStar5.Image = Properties.Resources.StarEmpty;
             score = 4;
+            star.CalculateStars(score);
+            StarsImages();
         }
 
         private void pbStar5_Click(object sender, EventArgs e)
         {
-            pbStar1.Image = Properties.Resources.StarFull;
-            pbStar2.Image = Properties.Resources.StarFull;
-            pbStar3.Image = Properties.Resources.StarFull;
-            pbStar4.Image = Properties.Resources.StarFull;
-            pbStar5.Image = Properties.Resources.StarFull;
             score = 5;
+            star.CalculateStars(score);
+            StarsImages();
         }
-
         private void btnSendFeedback_Click(object sender, EventArgs e)
         {
             feedback = tbFeedback.Text;
             FeedbackAndRating rating = new FeedbackAndRating(score, feedback);
+        }
+        public void StarsImages()
+        {
+            pbStar1.Image = star.pbox[0];
+            pbStar2.Image = star.pbox[1];
+            pbStar3.Image = star.pbox[2];
+            pbStar4.Image = star.pbox[3];
+            pbStar5.Image = star.pbox[4];
         }
     }
 }
