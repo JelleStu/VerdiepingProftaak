@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.rbMood1 = new System.Windows.Forms.RadioButton();
             this.rbMood2 = new System.Windows.Forms.RadioButton();
             this.rbMood3 = new System.Windows.Forms.RadioButton();
@@ -46,6 +46,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.spectrum1 = new AudioSpectrumAdvance.Spectrum();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -155,14 +156,15 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
             this.chart1.Location = new System.Drawing.Point(13, 627);
             this.chart1.Margin = new System.Windows.Forms.Padding(4);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(403, 107);
             this.chart1.TabIndex = 14;
             this.chart1.Text = "chart1";
+            this.chart1.Visible = false;
             // 
             // comboBox1
             // 
@@ -172,6 +174,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(160, 24);
             this.comboBox1.TabIndex = 13;
+            this.comboBox1.Visible = false;
             // 
             // progressBar2
             // 
@@ -180,6 +183,7 @@
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(133, 28);
             this.progressBar2.TabIndex = 12;
+            this.progressBar2.Visible = false;
             // 
             // progressBar1
             // 
@@ -188,6 +192,7 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(133, 28);
             this.progressBar1.TabIndex = 11;
+            this.progressBar1.Visible = false;
             // 
             // elementHost1
             // 
@@ -198,12 +203,23 @@
             this.elementHost1.TabIndex = 10;
             this.elementHost1.Child = this.spectrum1;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(707, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 17);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "label1";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // MoodsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(780, 593);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(845, 599);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.progressBar2);
@@ -244,5 +260,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label label1;
     }
 }

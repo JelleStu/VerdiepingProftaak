@@ -11,26 +11,27 @@ using System.Windows.Forms;
 
 namespace BinauralBeats
 {
+    
     public partial class LogIn : Form
     {
-        private Persons personenlist;
+        private string CurrentUser;
+        private App app;
+        
         public LogIn()
         {
-            InitializeComponent();
-            personenlist = new Persons();
-            
-        }
-
-        private void LogIn_Load(object sender, EventArgs e)
-        {
-            
+            InitializeComponent(); 
+            app = new App();
+            app.AddPerson();
         }
 
         private void BtnLogIn_Click(object sender, EventArgs e)
         {
-            bool PasswordOk = personenlist.FindForPerson(txbUsername.Text, txbPassword.Text);
+            bool PasswordOk = app.FindForPerson(txbUsername.Text, txbPassword.Text);
             if (PasswordOk != true) return;
+            CurrentUser = txbUsername.Text;
             MoodsForm moodfrom = new MoodsForm();
+            moodfrom.SetCurrentUser(CurrentUser);
+            moodfrom.SetApp(app);
             moodfrom.Show();
             this.Hide();
             
@@ -39,7 +40,7 @@ namespace BinauralBeats
         private void BtnRegister_Click(object sender, EventArgs e)
         {
             Register registerForm = new Register();
-            registerForm.Show();
+           registerForm.Show();
         }
     }
 }

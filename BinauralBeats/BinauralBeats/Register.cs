@@ -12,16 +12,33 @@ namespace BinauralBeats
 {
     public partial class Register : Form
     {
-       
+        private Persons personenList;
+
         public Register()
         {
             InitializeComponent();
+
+        }
+
+        public void SetList(Persons personsList)
+        {
+            personenList = personsList;
         }
 
         private void BtnCreate_Click(object sender, EventArgs e)
         {
-          //  Person.AddPerson(txbUsername.Text, txbPassword.Text);
-            MessageBox.Show("User is created!");
+            
+            try
+            {
+                personenList.AddPerson(txbUsername.Text, txbPassword.Text);
+                MessageBox.Show("User is created!");
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.ToString());
+            }
+            
+           
         }
     }
 }
