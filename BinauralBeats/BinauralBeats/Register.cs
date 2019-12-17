@@ -12,7 +12,7 @@ namespace BinauralBeats
 {
     public partial class Register : Form
     {
-        private Persons personenList;
+        private App app;
 
         public Register()
         {
@@ -20,9 +20,9 @@ namespace BinauralBeats
 
         }
 
-        public void SetList(Persons personsList)
+        public void SetApp(App _app)
         {
-            personenList = personsList;
+            app = _app;
         }
 
         private void BtnCreate_Click(object sender, EventArgs e)
@@ -30,8 +30,17 @@ namespace BinauralBeats
             
             try
             {
-                personenList.AddPerson(txbUsername.Text, txbPassword.Text);
-                MessageBox.Show("User is created!");
+                if (txbUsername.Text == "" || txbPassword.Text == "")
+                {
+                    MessageBox.Show("Username or password cannot be empty");
+                }
+                else
+                {
+                    app.AddPerson(txbUsername.Text, txbPassword.Text);
+                    MessageBox.Show(txbUsername.Text + @" is registered. You can login now.");
+                    this.Hide();
+                    
+                }
             }
             catch (Exception exception)
             {

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.rbMood1 = new System.Windows.Forms.RadioButton();
             this.rbMood2 = new System.Windows.Forms.RadioButton();
             this.rbMood3 = new System.Windows.Forms.RadioButton();
@@ -44,9 +44,10 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.lblGoToProfile = new System.Windows.Forms.Label();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.spectrum1 = new AudioSpectrumAdvance.Spectrum();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblLogOut = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -156,8 +157,8 @@
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Location = new System.Drawing.Point(13, 627);
             this.chart1.Margin = new System.Windows.Forms.Padding(4);
             this.chart1.Name = "chart1";
@@ -169,12 +170,11 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(582, 631);
+            this.comboBox1.Location = new System.Drawing.Point(593, 178);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(160, 24);
             this.comboBox1.TabIndex = 13;
-            this.comboBox1.Visible = false;
             // 
             // progressBar2
             // 
@@ -194,6 +194,17 @@
             this.progressBar1.TabIndex = 11;
             this.progressBar1.Visible = false;
             // 
+            // lblGoToProfile
+            // 
+            this.lblGoToProfile.AutoSize = true;
+            this.lblGoToProfile.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGoToProfile.Location = new System.Drawing.Point(588, 21);
+            this.lblGoToProfile.Name = "lblGoToProfile";
+            this.lblGoToProfile.Size = new System.Drawing.Size(83, 28);
+            this.lblGoToProfile.TabIndex = 15;
+            this.lblGoToProfile.Text = "label1";
+            this.lblGoToProfile.Click += new System.EventHandler(this.label1_Click);
+            // 
             // elementHost1
             // 
             this.elementHost1.Location = new System.Drawing.Point(0, 492);
@@ -203,23 +214,25 @@
             this.elementHost1.TabIndex = 10;
             this.elementHost1.Child = this.spectrum1;
             // 
-            // label1
+            // lblLogOut
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(707, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "label1";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.lblLogOut.AutoSize = true;
+            this.lblLogOut.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLogOut.Location = new System.Drawing.Point(588, 76);
+            this.lblLogOut.Name = "lblLogOut";
+            this.lblLogOut.Size = new System.Drawing.Size(97, 28);
+            this.lblLogOut.TabIndex = 16;
+            this.lblLogOut.Text = "Log out";
+            this.lblLogOut.Click += new System.EventHandler(this.lblLogOut_Click);
             // 
             // MoodsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(845, 599);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(924, 836);
+            this.Controls.Add(this.lblLogOut);
+            this.Controls.Add(this.lblGoToProfile);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.progressBar2);
@@ -260,6 +273,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblGoToProfile;
+        private System.Windows.Forms.Label lblLogOut;
     }
 }

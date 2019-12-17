@@ -1,36 +1,41 @@
 ﻿using System;
+using System.Linq;
 using System.Media;
 using System.Windows.Forms;
 using AudioSpectrumAdvance;
 using BinauralBeats.Properties;
-using Microsoft.VisualBasic;
+using Un4seen.Bass;
 
 /// <summary>
 /// Manoah class
 /// </summary>
 namespace BinauralBeats
 {
-    
     public partial class MoodsForm : Form
     {
-        private App app;
-
-        private string currentuser;
-        private Persons personenList;
+        //Aanmaken van moods
         private readonly Moods Alfa = new Moods(3, "Stress verlagend, beter leren", "8-14 Hertz",
             "Stress verlagend licht");
 
         private readonly Moods Bèta = new Moods(4, "Focus, energie, helder", "14-30 Hertz", "Helder licht licht");
-        private int chosenmood;
 
-        //Alle objecten aanmaken
+        
         private readonly Moods Delta = new Moods(1, "Helend", "0-4 Hertz", "Helend licht");
         private readonly SoundPlayer[] Music = new SoundPlayer[5];
 
-        private SoundPlayer player = new SoundPlayer();
-
         private readonly Moods Thèta = new Moods(2, "Meditatie, diepe ontspanning, creativiteit, trance", "4-8 Hertz",
             "Ontspannend licht");
+
+        //aanmaken van variablen
+        private App app;
+        private int chosenmood;
+        private Bass bass;
+        private Analyzer analyzer;
+
+
+        private string currentuser;
+
+        private SoundPlayer player = new SoundPlayer();
 
         private string tijdminuut;
         private string tijdseconde;
@@ -46,16 +51,10 @@ namespace BinauralBeats
             Music[3] = new SoundPlayer(Resources.AlphaWave);
             Music[4] = new SoundPlayer(Resources.BetaWave);
 
-            //Alle objecten aanmaken
-            Moods Delta = new Moods(1, "Helend", "0-4 Hertz", "Helend licht");
-        Moods Thèta = new Moods(2, "Meditatie, diepe ontspanning, creativiteit, trance", "4-8 Hertz", "Ontspannend licht");
-        Moods Alfa = new Moods(3, "Stress verlagend, beter leren", "8-14 Hertz", "Stress verlagend licht");
-        Moods Bèta = new Moods(4, "Focus, energie, helder", "14-30 Hertz", "Helder licht licht");
 
-         var analyzer = new Analyzer(progressBar1, progressBar2, spectrum1, comboBox1, chart1);
-         analyzer.Enable = true;
-         analyzer.DisplayEnable = true;
+            analyzer = new Analyzer(progressBar1, progressBar2, spectrum1, comboBox1, chart1);
         }
+
 
         private void rbMood1_CheckedChanged(object sender, EventArgs e)
         {
@@ -111,7 +110,6 @@ namespace BinauralBeats
             MusicTimer();
             timer2.Start();
             playSoundFromResource(sender, e);
-
         }
 
         private void btnMusicPause_Click(object sender, EventArgs e)
@@ -136,29 +134,40 @@ namespace BinauralBeats
             tijduur = dtpTimer.Value.ToString("HH");
             tijdminuut = dtpTimer.Value.ToString("mm");
             tijdseconde = dtpTimer.Value.ToString("ss");
-            MusicTimer musictimer = new MusicTimer(tijduur, tijdminuut, tijdseconde);
+            var musictimer = new MusicTimer(tijduur, tijdminuut, tijdseconde);
 
-            dtpTimer.Value= new DateTime(2019,11,28, musictimer.tijduur, musictimer.tijdminuut, musictimer.tijdseconde);
-
+            dtpTimer.Value = new DateTime(2019, 11, 28, musictimer.tijduur, musictimer.tijdminuut,
+                musictimer.tijdseconde);
         }
 
         public void SetApp(App _app)
         {
             app = _app;
+            analyzer.SetApp(app);
+            analyzer.Init();
+            analyzer.Enable = true;
+            analyzer.DisplayEnable = true;
         }
-
         public void SetCurrentUser(string username)
         {
             currentuser = username;
+            lblGoToProfile.Text = currentuser.First().ToString().ToUpper().ToString() + currentuser.Substring(1)+ ", ga naar profiel";
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            UserPage userpage = new UserPage();
-            userpage.SetCurrentUser(currentuser);
+            Hide();
+            var userpage = new UserPage();
             userpage.SetApp(app);
+            userpage.SetCurrentUser(currentuser);
             userpage.Show();
         }
+
+        private void lblLogOut_Click(object sender, EventArgs e)
+        {
+            Hide();
+            app.SetLoginActive();
+        }
+
     }
 }

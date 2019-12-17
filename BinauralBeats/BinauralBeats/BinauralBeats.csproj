@@ -105,7 +105,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="FeedbackAndRating.cs" />
+    <Compile Include="FeedbackAndRatingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FeedbackAndRatingForm.Designer.cs">
+      <DependentUpon>FeedbackAndRatingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="StarsForRating.cs" />
     <Compile Include="UserPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +148,9 @@
     <Compile Include="Spectrum.xaml.cs">
       <DependentUpon>Spectrum.xaml</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FeedbackAndRatingForm.resx">
+      <DependentUpon>FeedbackAndRatingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>
     </EmbeddedResource>
@@ -200,15 +211,11 @@
     <None Include="Resources\AlphaWave.wav" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\StarEmpty.jpeg" />
     <None Include="Resources\BetaWave.wav" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\DeltaWave.wav" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ThetaWave.wav" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="Resources\AlphaWave .wav" />
     <Content Include="x64\bass.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

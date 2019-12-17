@@ -1,46 +1,72 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
+using Un4seen.Bass;
 
 namespace BinauralBeats
 {
-    
     public partial class LogIn : Form
     {
+        private bool First;
+        private readonly App app;
         private string CurrentUser;
-        private App app;
-        
+        private LogIn form;
+        private Bass bass;
+
         public LogIn()
         {
-            InitializeComponent(); 
+            InitializeComponent();
             app = new App();
-            app.AddPerson();
+            form = this;
+            First = app.GetInit();
         }
 
         private void BtnLogIn_Click(object sender, EventArgs e)
         {
             bool PasswordOk = app.FindForPerson(txbUsername.Text, txbPassword.Text);
-            if (PasswordOk != true) return;
-            CurrentUser = txbUsername.Text;
-            MoodsForm moodfrom = new MoodsForm();
-            moodfrom.SetCurrentUser(CurrentUser);
-            moodfrom.SetApp(app);
-            moodfrom.Show();
-            this.Hide();
-            
+                if (PasswordOk != true)
+                {
+                    MessageBox.Show(@"Gebruikersnaam of wachtwoord onjuist");
+                }
+                else
+                {
+                    CurrentUser = txbUsername.Text;
+                    SetForm();
+                    if (First == false)
+                    {
+                        MoodsForm moodfrom = new MoodsForm();
+                        app.SetMoodsForm(moodfrom);
+                        moodfrom.SetCurrentUser(CurrentUser);
+                        moodfrom.SetApp(app);
+                        moodfrom.Show();
+                    }
+                    else
+                    {
+                        app.SetMoodsFormActive();
+                    }
+                    txbPassword.Text = string.Empty;
+                    txbUsername.Text = string.Empty;
+                    Hide();
+                }
         }
 
         private void BtnRegister_Click(object sender, EventArgs e)
         {
             Register registerForm = new Register();
-           registerForm.Show();
+            registerForm.SetApp(app);
+            registerForm.Show();
         }
+
+        private void SetForm()
+        {
+            app.SetLoginFom(form);
+        }
+
+        public void SetBass(Bass _bass)
+        {
+            bass = _bass;
+        }
+
+        
     }
 }

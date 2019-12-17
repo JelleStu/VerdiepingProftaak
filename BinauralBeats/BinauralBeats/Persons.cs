@@ -56,5 +56,16 @@ namespace BinauralBeats
 
             return null;
         }
+
+        public void SetNewPassword(Person currentPerson, string password)
+        {
+            foreach (Person p in personenList)
+            {
+                if (p == currentPerson)
+                {
+                    currentPerson.SetNewPassword(password);
+                }
+            }
+        }
     }
 }
