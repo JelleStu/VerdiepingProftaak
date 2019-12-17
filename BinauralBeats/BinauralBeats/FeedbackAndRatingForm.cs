@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Verdiepende_proftaak
+namespace BinauralBeats
 {
     public partial class FeedbackAndRatingForm : Form
     {

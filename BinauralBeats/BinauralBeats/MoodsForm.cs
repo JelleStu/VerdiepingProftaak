@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Reflection;
+using AudioSpectrumAdvance;
 using BinauralBeats.Properties;
-using Microsoft.VisualBasic;
+using Un4seen.Bass;
 
 /// <summary>
 /// Manoah class
@@ -19,7 +13,34 @@ namespace BinauralBeats
 {
     public partial class MoodsForm : Form
     {
-        SoundPlayer[] Music = new SoundPlayer[5];
+        //Aanmaken van moods
+        private readonly Moods Alfa = new Moods(3, "Stress verlagend, beter leren", "8-14 Hertz",
+            "Stress verlagend licht");
+
+        private readonly Moods Bèta = new Moods(4, "Focus, energie, helder", "14-30 Hertz", "Helder licht licht");
+
+
+        private readonly Moods Delta = new Moods(1, "Helend", "0-4 Hertz", "Helend licht");
+        private readonly SoundPlayer[] Music = new SoundPlayer[5];
+
+        private readonly Moods Thèta = new Moods(2, "Meditatie, diepe ontspanning, creativiteit, trance", "4-8 Hertz",
+            "Ontspannend licht");
+
+        //aanmaken van variablen
+        private App app;
+        private int chosenmood;
+        private Bass bass;
+        private Analyzer analyzer;
+
+
+        private string currentuser;
+
+        private SoundPlayer player = new SoundPlayer();
+
+        private string tijdminuut;
+        private string tijdseconde;
+        private string tijduur;
+
         public MoodsForm()
         {
             InitializeComponent();
@@ -29,32 +50,20 @@ namespace BinauralBeats
             Music[2] = new SoundPlayer(Resources.ThetaWave);
             Music[3] = new SoundPlayer(Resources.AlphaWave);
             Music[4] = new SoundPlayer(Resources.BetaWave);
-            chart1.ChartAreas["ChartArea1"].AxisX.LabelStyle.Enabled = false;
-            chart1.ChartAreas["ChartArea1"].AxisY.LabelStyle.Enabled = false;
-            chart2.ChartAreas["ChartArea1"].AxisX.LabelStyle.Enabled = false;
-            chart2.ChartAreas["ChartArea1"].AxisY.LabelStyle.Enabled = false;
+
+            AdvertisementPopup ad = new AdvertisementPopup();
+            ad.Show();
+
+
+            analyzer = new Analyzer(progressBar1, progressBar2, spectrum1, comboBox1, chart1);
         }
-        int chosenmood = 0;
-        string tijduur;
-        string tijdminuut;
-        string tijdseconde;
-        private double c1;
-        private double c2;
-
-        //Alle objecten aanmaken
-        Moods Delta = new Moods(1, "Helend", "0-4 Hertz", "Helend licht");
-        Moods Thèta = new Moods(2, "Meditatie, diepe ontspanning, creativiteit, trance", "4-8 Hertz", "Ontspannend licht");
-        Moods Alfa = new Moods(3, "Stress verlagend, beter leren", "8-14 Hertz", "Stress verlagend licht");
-        Moods Bèta = new Moods(4, "Focus, energie, helder", "14-30 Hertz", "Helder licht licht");
-
 
 
         private void rbMood1_CheckedChanged(object sender, EventArgs e)
         {
             if (rbMood1.Checked)
             {
-
-                string informatie = Delta.returninfo();
+                var informatie = Delta.returninfo();
                 chosenmood = Delta.returnChosenMood();
                 rtbMoodInformation.Text = informatie;
                 PauseMusic();
@@ -65,7 +74,7 @@ namespace BinauralBeats
         {
             if (rbMood2.Checked)
             {
-                string informatie = Thèta.returninfo();
+                var informatie = Thèta.returninfo();
                 chosenmood = Thèta.returnChosenMood();
                 rtbMoodInformation.Text = informatie;
                 PauseMusic();
@@ -76,7 +85,7 @@ namespace BinauralBeats
         {
             if (rbMood3.Checked)
             {
-                string informatie = Alfa.returninfo();
+                var informatie = Alfa.returninfo();
                 chosenmood = Alfa.returnChosenMood();
                 rtbMoodInformation.Text = informatie;
                 PauseMusic();
@@ -87,7 +96,7 @@ namespace BinauralBeats
         {
             if (rbMood4.Checked)
             {
-                string informatie = Bèta.returninfo();
+                var informatie = Bèta.returninfo();
                 chosenmood = Bèta.returnChosenMood();
                 rtbMoodInformation.Text = informatie;
                 PauseMusic();
@@ -96,10 +105,7 @@ namespace BinauralBeats
 
         private void playSoundFromResource(object sender, EventArgs e)
         {
-            if (chosenmood != 0)
-            {
-                Music[chosenmood].Play();
-            }
+            if (chosenmood != 0) Music[chosenmood].Play();
         }
 
         private void btnPlayMusic_Click_1(object sender, EventArgs e)
@@ -107,19 +113,20 @@ namespace BinauralBeats
             MusicTimer();
             timer2.Start();
             playSoundFromResource(sender, e);
-
         }
 
         private void btnMusicPause_Click(object sender, EventArgs e)
         {
             PauseMusic();
         }
+
         public void PauseMusic()
         {
             Music[chosenmood].Stop();
             timer1.Stop();
             timer2.Stop();
         }
+
         public void MusicTimer()
         {
             timer1.Start();
@@ -130,35 +137,46 @@ namespace BinauralBeats
             tijduur = dtpTimer.Value.ToString("HH");
             tijdminuut = dtpTimer.Value.ToString("mm");
             tijdseconde = dtpTimer.Value.ToString("ss");
+            var musictimer = new MusicTimer(tijduur, tijdminuut, tijdseconde);
 
-            MusicTimer musictimer = new MusicTimer(tijduur, tijdminuut, tijdseconde);
-
-            dtpTimer.Value= new DateTime(2019,11,28, musictimer.tijduur, musictimer.tijdminuut, musictimer.tijdseconde);
-
+            dtpTimer.Value = new DateTime(2019, 11, 28, musictimer.tijduur, musictimer.tijdminuut,
+                musictimer.tijdseconde);
+            if (musictimer.tijduur == 0 && musictimer.tijdminuut == 0 && musictimer.tijdseconde == 0)
+            {
+                FeedbackAndRatingForm rating = new FeedbackAndRatingForm();
+                rating.Show();
+                PauseMusic();
+            }
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
+        public void SetApp(App _app)
         {
-            chart1.Series[0].Points.AddXY(c1, 3 * Math.Sin(4 * c1));// + 5 * Math.Cos(3 * x));
-
-            if (chart1.Series[0].Points.Count > 100)
-                chart1.Series[0].Points.RemoveAt(0);
-
-            chart1.ChartAreas[0].AxisX.Minimum = chart1.Series[0].Points[0].XValue;
-            chart1.ChartAreas[0].AxisX.Maximum = c1;
-
-            c1 += 0.1;
-
-            chart2.Series[0].Points.AddXY(c2, 3 * Math.Sin(2 * c2));
-
-            if (chart2.Series[0].Points.Count > 100)
-
-            { chart2.Series[0].Points.RemoveAt(0);}
-
-            chart2.ChartAreas[0].AxisX.Minimum = chart2.Series[0].Points[0].XValue;
-            chart2.ChartAreas[0].AxisX.Maximum = c2;
-
-            c2 += 0.1;
+            app = _app;
+            analyzer.SetApp(app);
+            analyzer.Init();
+            analyzer.Enable = true;
+            analyzer.DisplayEnable = true;
         }
+        public void SetCurrentUser(string username)
+        {
+            currentuser = username;
+            lblGoToProfile.Text = currentuser.First().ToString().ToUpper().ToString() + currentuser.Substring(1) + ", ga naar profiel";
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var userpage = new UserPage();
+            userpage.SetApp(app);
+            userpage.SetCurrentUser(currentuser);
+            userpage.Show();
+        }
+
+        private void lblLogOut_Click(object sender, EventArgs e)
+        {
+            Hide();
+            app.SetLoginActive();
+        }
+
     }
 }
