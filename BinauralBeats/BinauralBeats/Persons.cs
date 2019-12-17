@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BinauralBeats
 {
-    class Persons
+    public class Persons
     {
         private List<Person> personenList = new List<Person>();
 
@@ -30,6 +30,42 @@ namespace BinauralBeats
                 }
             }
             return false;
+        }
+
+        public Person FindPerson(string username)
+        {
+            foreach (Person P in personenList)
+            {
+                if (P.GetName() == username)
+                {
+                    return P;
+                }
+            }
+            return null;
+        }
+
+        public string GetData(Person currentPerson)
+        {
+            foreach (Person p in personenList)
+            {
+                if (p == currentPerson)
+                {
+                    return currentPerson.GetDataUser();
+                }
+            }
+
+            return null;
+        }
+
+        public void SetNewPassword(Person currentPerson, string password)
+        {
+            foreach (Person p in personenList)
+            {
+                if (p == currentPerson)
+                {
+                    currentPerson.SetNewPassword(password);
+                }
+            }
         }
     }
 }

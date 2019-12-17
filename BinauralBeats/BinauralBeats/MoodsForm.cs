@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Media;
 using System.Windows.Forms;
-using System.Reflection;
+using AudioSpectrumAdvance;
+using BinauralBeats.Properties;
+using Un4seen.Bass;
+
 /// <summary>
 /// Manoah class
 /// </summary>
@@ -15,36 +13,54 @@ namespace BinauralBeats
 {
     public partial class MoodsForm : Form
     {
-        string[] Music = new string[5];
+        //Aanmaken van moods
+        private readonly Moods Alfa = new Moods(3, "Stress verlagend, beter leren", "8-14 Hertz",
+            "Stress verlagend licht");
+
+        private readonly Moods Bèta = new Moods(4, "Focus, energie, helder", "14-30 Hertz", "Helder licht licht");
+
+        
+        private readonly Moods Delta = new Moods(1, "Helend", "0-4 Hertz", "Helend licht");
+        private readonly SoundPlayer[] Music = new SoundPlayer[5];
+
+        private readonly Moods Thèta = new Moods(2, "Meditatie, diepe ontspanning, creativiteit, trance", "4-8 Hertz",
+            "Ontspannend licht");
+
+        //aanmaken van variablen
+        private App app;
+        private int chosenmood;
+        private Bass bass;
+        private Analyzer analyzer;
+
+
+        private string currentuser;
+
+        private SoundPlayer player = new SoundPlayer();
+
+        private string tijdminuut;
+        private string tijdseconde;
+        private string tijduur;
+
         public MoodsForm()
         {
             InitializeComponent();
             //Muziek toevoegen
-            Music[0] = " ";
-            Music[1] = "C:/Users/Manoah Somers/Documents/Fontys/2019-2020/Proftaak/Verdieping proftaak/VerdiepingProftaak/BinauralBeats/BinauralBeats/Resources/Binaural Beat - Delta Wave Frequency 90minute 100 Pure.mp3";
-            Music[2] = "C:/Users/Manoah Somers/Documents/Fontys/2019-2020/Proftaak/Verdieping proftaak/VerdiepingProftaak/BinauralBeats/BinauralBeats/Resources/Binaural Beat - Theta Wave 100 Pure Theta Frequency.mp3";
-            Music[3] = "C:/Users/Manoah Somers/Documents/Fontys/2019-2020/Proftaak/Verdieping proftaak/VerdiepingProftaak/BinauralBeats/BinauralBeats/Resources/Binaural Beat - Alpha Wave Frequency 90minute 100 Pure.mp3";
-            Music[4] = "C:/Users/Manoah Somers/Documents/Fontys/2019-2020/Proftaak/Verdieping proftaak/VerdiepingProftaak/BinauralBeats/BinauralBeats/Resources/Binaural Beat - Beta Wave Frequency 100 Pure Beta.mp3";
-        }
-        int chosenmood = 0;
-        decimal tijd;
-        string tijduur;
-        string tijdminuut;
-        string tijdseconde;
+            Music[0] = new SoundPlayer();
+            Music[1] = new SoundPlayer(Resources.DeltaWave);
+            Music[2] = new SoundPlayer(Resources.ThetaWave);
+            Music[3] = new SoundPlayer(Resources.AlphaWave);
+            Music[4] = new SoundPlayer(Resources.BetaWave);
 
-        //Alle objecten aanmaken
-        Moods Delta = new Moods(1, "Helend", "0-4 Hertz", "Helend licht");
-        Moods Thèta = new Moods(2, "Meditatie, diepe ontspanning, creativiteit, trance", "4-8 Hertz", "Ontspannend licht");
-        Moods Alfa = new Moods(3, "Stress verlagend, beter leren", "8-14 Hertz", "Stress verlagend licht");
-        Moods Bèta = new Moods(4, "Focus, energie, helder", "14-30 Hertz", "Helder licht licht");
+
+            analyzer = new Analyzer(progressBar1, progressBar2, spectrum1, comboBox1, chart1);
+        }
 
 
         private void rbMood1_CheckedChanged(object sender, EventArgs e)
         {
             if (rbMood1.Checked)
             {
-
-                string informatie = Delta.returninfo();
+                var informatie = Delta.returninfo();
                 chosenmood = Delta.returnChosenMood();
                 rtbMoodInformation.Text = informatie;
                 PauseMusic();
@@ -55,7 +71,7 @@ namespace BinauralBeats
         {
             if (rbMood2.Checked)
             {
-                string informatie = Thèta.returninfo();
+                var informatie = Thèta.returninfo();
                 chosenmood = Thèta.returnChosenMood();
                 rtbMoodInformation.Text = informatie;
                 PauseMusic();
@@ -66,7 +82,7 @@ namespace BinauralBeats
         {
             if (rbMood3.Checked)
             {
-                string informatie = Alfa.returninfo();
+                var informatie = Alfa.returninfo();
                 chosenmood = Alfa.returnChosenMood();
                 rtbMoodInformation.Text = informatie;
                 PauseMusic();
@@ -77,7 +93,7 @@ namespace BinauralBeats
         {
             if (rbMood4.Checked)
             {
-                string informatie = Bèta.returninfo();
+                var informatie = Bèta.returninfo();
                 chosenmood = Bèta.returnChosenMood();
                 rtbMoodInformation.Text = informatie;
                 PauseMusic();
@@ -86,16 +102,13 @@ namespace BinauralBeats
 
         private void playSoundFromResource(object sender, EventArgs e)
         {
-            if (chosenmood != 0)
-            {
-                //wplayer.URL = Music[chosenmood];
-                //wplayer.controls.play();
-            }
+            if (chosenmood != 0) Music[chosenmood].Play();
         }
 
         private void btnPlayMusic_Click_1(object sender, EventArgs e)
         {
             MusicTimer();
+            timer2.Start();
             playSoundFromResource(sender, e);
         }
 
@@ -103,11 +116,14 @@ namespace BinauralBeats
         {
             PauseMusic();
         }
+
         public void PauseMusic()
         {
+            Music[chosenmood].Stop();
             timer1.Stop();
-            //wplayer.controls.pause();
+            timer2.Stop();
         }
+
         public void MusicTimer()
         {
             timer1.Start();
@@ -118,41 +134,40 @@ namespace BinauralBeats
             tijduur = dtpTimer.Value.ToString("HH");
             tijdminuut = dtpTimer.Value.ToString("mm");
             tijdseconde = dtpTimer.Value.ToString("ss");
-            int itijdseconde = Convert.ToInt32(tijdseconde);
-            int itijdminuut = Convert.ToInt32(tijdminuut);
-            int itijduur = Convert.ToInt32(tijduur);
-            if (itijdseconde == 0)
-            {
-                if (itijdminuut == 0)
-                {
-                    if (itijduur == 0)
-                    {
-                        PauseMusic();
-                        timer1.Stop();
-                    }
-                    else
-                    {
-                        tijduur = Convert.ToString(itijduur -= 1);
-                        tijdminuut = Convert.ToString(itijdminuut = 59);
-                        tijdseconde = Convert.ToString(itijdseconde = 59);
-                    }
-                }
-                else
-                {
-                    tijdminuut = Convert.ToString(itijdminuut -= 1);
-                    tijdseconde = Convert.ToString(itijdseconde = 59);
-                }
-            }
-            else
-            {
-                tijdseconde = Convert.ToString(itijdseconde -= 1);
-            }
-            int iitijdseconde = Convert.ToInt32(tijdseconde);
-            int iitijdminuut = Convert.ToInt32(tijdminuut);
-            int iitijduur = Convert.ToInt32(tijduur);
+            var musictimer = new MusicTimer(tijduur, tijdminuut, tijdseconde);
 
-            dtpTimer.Value= new DateTime(2019,11,28, iitijduur, iitijdminuut, iitijdseconde );
-
+            dtpTimer.Value = new DateTime(2019, 11, 28, musictimer.tijduur, musictimer.tijdminuut,
+                musictimer.tijdseconde);
         }
+
+        public void SetApp(App _app)
+        {
+            app = _app;
+            analyzer.SetApp(app);
+            analyzer.Init();
+            analyzer.Enable = true;
+            analyzer.DisplayEnable = true;
+        }
+        public void SetCurrentUser(string username)
+        {
+            currentuser = username;
+            lblGoToProfile.Text = currentuser.First().ToString().ToUpper().ToString() + currentuser.Substring(1)+ ", ga naar profiel";
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var userpage = new UserPage();
+            userpage.SetApp(app);
+            userpage.SetCurrentUser(currentuser);
+            userpage.Show();
+        }
+
+        private void lblLogOut_Click(object sender, EventArgs e)
+        {
+            Hide();
+            app.SetLoginActive();
+        }
+
     }
 }
