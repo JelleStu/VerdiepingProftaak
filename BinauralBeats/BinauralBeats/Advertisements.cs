@@ -22,10 +22,10 @@ namespace Verdiepende_proftaak
 
         public Advertisements()
         {
-            pboximage.Add(Properties.Resources.PhilipsHue);
-            weburl.Add("https://www.philips.com/");
-            pboximage.Add(Properties.Resources.Intersport);
-            weburl.Add("https://www.intersport.nl/");
+//            pboximage.Add(Properties.Resources.PhilipsHue);
+//            weburl.Add("https://www.philips.com/");
+//            pboximage.Add(Properties.Resources.Intersport);
+//            weburl.Add("https://www.intersport.nl/");
 
             Advertisement();
         }
