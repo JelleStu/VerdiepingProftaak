@@ -67,5 +67,11 @@ namespace BinauralBeats
                 }
             }
         }
+
+        int CheckPremium(string _personname)
+        {
+            Person currentPerson = FindPerson(_personname);
+           return currentPerson.GetPremium();
+        }
     }
 }

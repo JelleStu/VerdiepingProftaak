@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+using BinauralBeats.Properties;
 
 namespace BinauralBeats
 {
@@ -10,6 +12,11 @@ namespace BinauralBeats
         private string currentuser;
         private string VerficationCode;
         private Person currentPerson;
+
+
+        Image txImage = Image.FromFile(@"C:\Users\Jelle\Downloads\ezgif.com-gif-maker.gif");
+
+       
         public UserPage()
         {
             InitializeComponent();
@@ -17,7 +24,6 @@ namespace BinauralBeats
             btnCheck.Visible = false;
             btnSetPassword.Enabled = false;
             btnSetPassword.Visible = false;
-
         }
 
         public void SetApp(App _app)
@@ -100,6 +106,18 @@ namespace BinauralBeats
             {
                 MessageBox.Show(@"Password can't be blank");
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+           pictureBox1.Image = Image.FromFile(@"C:\Users\Jelle\Downloads\ezgif.com-gif-maker.gif");
+           Thread.Sleep(500);
+           pictureBox1.Image = Image.FromFile(@"C:\Users\Jelle\Downloads\premium_onn.gif");
+
+        }
+        private void OnFrameChanged(object sender, EventArgs e)
+        {
+            pictureBox1.Image = txImage;
         }
     }
 }

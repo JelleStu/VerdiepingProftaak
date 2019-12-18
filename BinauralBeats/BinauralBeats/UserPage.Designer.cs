@@ -28,11 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserPage));
             this.btnMakeCode = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txbPassword = new System.Windows.Forms.TextBox();
             this.btnCheck = new System.Windows.Forms.Button();
             this.btnSetPassword = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblPremium = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMakeCode
@@ -84,11 +88,34 @@
             this.btnSetPassword.UseVisualStyleBackColor = true;
             this.btnSetPassword.Click += new System.EventHandler(this.btnSetPassword_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(252, 25);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(68, 36);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // lblPremium
+            // 
+            this.lblPremium.AutoSize = true;
+            this.lblPremium.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPremium.Location = new System.Drawing.Point(12, 25);
+            this.lblPremium.Name = "lblPremium";
+            this.lblPremium.Size = new System.Drawing.Size(209, 23);
+            this.lblPremium.TabIndex = 6;
+            this.lblPremium.Text = "Turn premium on/off";
+            // 
             // UserPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(398, 390);
+            this.Controls.Add(this.lblPremium);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnSetPassword);
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.txbPassword);
@@ -96,6 +123,7 @@
             this.Controls.Add(this.btnMakeCode);
             this.Name = "UserPage";
             this.Text = "UserPage";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -108,5 +136,7 @@
         private System.Windows.Forms.TextBox txbPassword;
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.Button btnSetPassword;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblPremium;
     }
 }
