@@ -88,7 +88,7 @@
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(91, 36);
             this.btnCreate.TabIndex = 5;
-            this.btnCreate.Text = "Create";
+            this.btnCreate.Text = "Register";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.BtnCreate_Click);
             // 

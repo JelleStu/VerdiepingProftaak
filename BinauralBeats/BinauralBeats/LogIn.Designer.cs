@@ -58,8 +58,10 @@
             // 
             this.txbPassword.Location = new System.Drawing.Point(178, 147);
             this.txbPassword.Name = "txbPassword";
+            this.txbPassword.PasswordChar = '*';
             this.txbPassword.Size = new System.Drawing.Size(100, 22);
             this.txbPassword.TabIndex = 2;
+            this.txbPassword.UseSystemPasswordChar = true;
             // 
             // lblUsername
             // 
@@ -93,7 +95,7 @@
             // 
             // btnRegister
             // 
-            this.btnRegister.Location = new System.Drawing.Point(294, 202);
+            this.btnRegister.Location = new System.Drawing.Point(293, 202);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(87, 33);
             this.btnRegister.TabIndex = 6;
@@ -116,7 +118,6 @@
             this.Controls.Add(this.lblTopText);
             this.Name = "LogIn";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.LogIn_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
