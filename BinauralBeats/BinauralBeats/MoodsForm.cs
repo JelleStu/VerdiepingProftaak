@@ -18,8 +18,6 @@ namespace BinauralBeats
             "Stress verlagend licht");
 
         private readonly Moods Bèta = new Moods(4, "Focus, energie, helder", "14-30 Hertz", "Helder licht licht");
-
-        
         private readonly Moods Delta = new Moods(1, "Helend", "0-4 Hertz", "Helend licht");
         private readonly SoundPlayer[] Music = new SoundPlayer[5];
 
@@ -51,6 +49,8 @@ namespace BinauralBeats
             Music[3] = new SoundPlayer(Resources.AlphaWave);
             Music[4] = new SoundPlayer(Resources.BetaWave);
 
+            AdvertisementPopup ad = new AdvertisementPopup();
+            ad.Show();
 
             analyzer = new Analyzer(progressBar1, progressBar2, spectrum1, comboBox1, chart1);
         }
@@ -138,6 +138,13 @@ namespace BinauralBeats
 
             dtpTimer.Value = new DateTime(2019, 11, 28, musictimer.tijduur, musictimer.tijdminuut,
                 musictimer.tijdseconde);
+                
+            if (musictimer.tijduur == 0 && musictimer.tijdminuut == 0 && musictimer.tijdseconde == 0)
+            {
+                FeedbackAndRatingForm rating = new FeedbackAndRatingForm();
+                rating.Show();
+                PauseMusic();
+            }
         }
 
         public void SetApp(App _app)
@@ -151,6 +158,8 @@ namespace BinauralBeats
         public void SetCurrentUser(string username)
         {
             currentuser = username;
+
+            lblGoToProfile.Text = currentuser.First().ToString().ToUpper().ToString() + currentuser.Substring(1) + ", ga naar profiel";
             lblGoToProfile.Text = currentuser.First().ToString().ToUpper().ToString() + currentuser.Substring(1)+ ", ga naar profiel";
         }
 

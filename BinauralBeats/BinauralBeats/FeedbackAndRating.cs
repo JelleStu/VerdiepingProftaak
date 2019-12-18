@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Verdiepende_proftaak
+namespace BinauralBeats
 {
     class FeedbackAndRating
     {
@@ -32,7 +32,7 @@ namespace Verdiepende_proftaak
             else
             {
                 //Database connectie
-                MessageBox.Show("Bedankt voor het beoordelen van deze app!");
+                MessageBox.Show("Thank you for rating our app!");
                 FeedbackAndRatingForm.ActiveForm.Close();
             }
         }

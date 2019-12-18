@@ -1,4 +1,4 @@
-﻿namespace Verdiepende_proftaak
+﻿namespace BinauralBeats
 {
     partial class FeedbackAndRatingForm
     {
@@ -35,6 +35,7 @@
             this.pbStar5 = new System.Windows.Forms.PictureBox();
             this.tbFeedback = new System.Windows.Forms.TextBox();
             this.btnSendFeedback = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbStar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbStar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbStar3)).BeginInit();
@@ -44,6 +45,8 @@
             // 
             // pbStar1
             // 
+            this.pbStar1.Image = global::BinauralBeats.Properties.Resources.StarEmpty;
+            this.pbStar1.Location = new System.Drawing.Point(56, 55);
             this.pbStar1.Location = new System.Drawing.Point(31, 31);
             this.pbStar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pbStar1.Name = "pbStar1";
@@ -55,6 +58,8 @@
             // 
             // pbStar2
             // 
+            this.pbStar2.Image = global::BinauralBeats.Properties.Resources.StarEmpty;
+            this.pbStar2.Location = new System.Drawing.Point(206, 55);
             this.pbStar2.Location = new System.Drawing.Point(114, 31);
             this.pbStar2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pbStar2.Name = "pbStar2";
@@ -66,6 +71,8 @@
             // 
             // pbStar3
             // 
+            this.pbStar3.Image = global::BinauralBeats.Properties.Resources.StarEmpty;
+            this.pbStar3.Location = new System.Drawing.Point(356, 55);
             this.pbStar3.Location = new System.Drawing.Point(198, 31);
             this.pbStar3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pbStar3.Name = "pbStar3";
@@ -77,6 +84,8 @@
             // 
             // pbStar4
             // 
+            this.pbStar4.Image = global::BinauralBeats.Properties.Resources.StarEmpty;
+            this.pbStar4.Location = new System.Drawing.Point(506, 55);
             this.pbStar4.Location = new System.Drawing.Point(281, 31);
             this.pbStar4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pbStar4.Name = "pbStar4";
@@ -88,6 +97,8 @@
             // 
             // pbStar5
             // 
+            this.pbStar5.Image = global::BinauralBeats.Properties.Resources.StarEmpty;
+            this.pbStar5.Location = new System.Drawing.Point(656, 55);
             this.pbStar5.Location = new System.Drawing.Point(364, 31);
             this.pbStar5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pbStar5.Name = "pbStar5";
@@ -117,10 +128,21 @@
             this.btnSendFeedback.UseVisualStyleBackColor = true;
             this.btnSendFeedback.Click += new System.EventHandler(this.btnSendFeedback_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(56, 242);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(127, 29);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Feedback:";
+            // 
             // FeedbackAndRatingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(870, 551);
+            this.Controls.Add(this.label1);
             this.ClientSize = new System.Drawing.Size(483, 306);
             this.Controls.Add(this.btnSendFeedback);
             this.Controls.Add(this.tbFeedback);
@@ -151,5 +173,6 @@
         private System.Windows.Forms.PictureBox pbStar5;
         private System.Windows.Forms.TextBox tbFeedback;
         private System.Windows.Forms.Button btnSendFeedback;
+        private System.Windows.Forms.Label label1;
     }
 }
